@@ -24,34 +24,48 @@
 
 //console.log( new Date(d) );
 //console.log( new Date(moment()) );
-
 const now = moment().startOf('hour');
 const currentHour = now.hour();
 $("#CurrentDay").text(now.format("DD MMM YYYY"));
 
 
-var notepad = document.getElementById("notepad");
-var schedule = document.getElementById("schedule");
-console.log(schedule.innerHTML);
-var note;
-window.onkeyup = save;
 
-function supportsLocalStorage() {
-    return ('localStorage' in window) && window['localStorage'] !== null;
-}
 
-function save() {
-    if (!supportsLocalStorage()) { return false; }
-		note = notepad.value;
-		console.log(note);
-		localStorage["stored.note"] =  note;
-    return true;
-}
+$("#container").on("click", ".Submit", function() {
+	const $parent = $(this).parent();
 
-function resume() {
-    if (!supportsLocalStorage()) { return false; }
-		note = localStorage["stored.note"];
-		if (!note) { return false; }
-		notepad.value = note;
-		return true;
-}
+	const hour = $parent.data('hour');
+	const userInput = $parent.find(".input").val();
+
+	planner[hour] = userInput;
+	localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(planner));
+});
+
+
+
+
+//var notepad = document.getElementById("notepad");
+//var schedule = document.getElementById("schedule");
+//console.log(schedule.innerHTML);
+//var note;
+//window.onkeyup = save;
+
+//function supportsLocalStorage() {
+  //  return ('localStorage' in window) && window['localStorage'] !== null;
+//}
+
+//function save() {
+ //   if (!supportsLocalStorage()) { return false; }
+//		note = notepad.value;
+//		console.log(note);
+//		localStorage["stored.note"] =  note;
+ //   return true;
+//}
+
+//function resume() {
+//    if (!supportsLocalStorage()) { return false; }
+//		note = localStorage["stored.note"];
+//		if (!note) { return false; }
+//		notepad.value = note;
+//		return true;
+//}
