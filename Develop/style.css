@@ -4,14 +4,12 @@ body {
   line-height: 2;
 }
 
-/*textarea{
-  background: transparent;
-  border: none;
-  resize: none;
-  color: #000000;
-  border-left: 1px solid black;
-  padding: 10px;
-}*/
+#CurrentDay {
+  padding: 0px;
+  background: #251abc;
+  color: white 
+}
+
 
 .jumbotron {
   text-align: center;
@@ -35,6 +33,21 @@ body {
 	border: solid thin black;*/
 }
 
+.submit {
+  border-left: 1px solid black;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #06AED5;
+  color: white;
+  
+}
+
+
+#ClearPlanner {
+  text-align: centre;
+  margin-left: 80px;
+  margin-top: 30px;
+}
   
 
 
@@ -76,14 +89,7 @@ body {
   color: white;
 }*/
 
-.submit {
-  border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #06AED5;
-  color: white;
-  
-}
+
 
 /*.saveBtn i:hover {
   font-size: 20px;
@@ -155,9 +161,4 @@ body {font-family: Verdana, sans-serif;}
   color: #777;
 }
 
-/* Highlight the "current" day */
-.days li .active {
-  padding: 5px;
-  background: #1abc9c;
-  color: white !important
-}
+
