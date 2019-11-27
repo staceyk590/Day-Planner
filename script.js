@@ -51,13 +51,16 @@ $("#CurrentDay").text(now.format("DD MMM YYYY"));
 // 	}
 // }
 
-
 $(".input").each(function(){
-	var hour = $(this).attr("id")
+  var hour = $(this).attr("id")
+  
+  console.log(localStorage.getItem(hour))
+  $(this).val(localStorage.getItem(hour))
+
 	hour = parseInt(hour)
 	//console.log(hour)
-	console.log(currentHour)
-	console.log(hour)
+	// console.log(currentHour)
+	// console.log(hour)
 	if(currentHour > hour){
 		$(this).css("background-color", "grey")
 	} else if(currentHour < hour){
@@ -68,23 +71,32 @@ $(".input").each(function(){
 })
 
 
-var historyValue = JSON.parse(localStorage.getItem("searchHistoryFromLocalStorage"));
-    if(historyValue != null){
-      console.log(historyValue);
-      for(var i=0; i < historyValue.length; i++){
-        var item = historyValue[i];
-        console.log(item);
-        var p = $("<p>").text(item); 
-        console.log(p);   //<p>test2</p>
-        //$(".searchHistory").append(p);
-      }
-    }
+
+
+// var historyValue = JSON.parse(localStorage.getItem("searchHistoryFromLocalStorage"));
+//     if(historyValue != null){
+//       console.log(historyValue);
+//       for(var i=0; i < historyValue.length; i++){
+//         var item = historyValue[i];
+//         console.log(item);
+//         var p = $("<p>").text(item); 
+//         console.log(p);   //<p>test2</p>
+//         //$(".searchHistory").append(p);
+//       }
+//     }
     //and display the value from localstorage
 
     //when user click on search button
-    $(".submit").on("click", function(){
+    $(".submit").on("click", function(event){
+      event.preventDefault();
       var searchText = $("#searchText").val();
-      console.log(searchText);
+      var hour = $(this).attr("data-hour")
+      console.log(hour);
+      var data = $("#" + hour).val() //"#9" [Object object]
+
+      //console.log("array =" , array)
+
+      localStorage.setItem(hour, data);
 
       //display that text below
       //var p = $("<p>").text(searchText);    //<p>test2</p>
@@ -92,19 +104,22 @@ var historyValue = JSON.parse(localStorage.getItem("searchHistoryFromLocalStorag
 
       //clear the input tag
       $("#searchText").val("");
-      
-     var historyFromLocalStorage = JSON.parse(localStorage.getItem("searchHistoryFromLocalStorage"));
-     //is it not null
 
-     if(historyFromLocalStorage == null){
-        var historyArray = [];
-        historyArray.push(searchText);  //["test"]
-        //add that text to localstorage array
-        localStorage.setItem("searchHistoryFromLocalStorage", JSON.stringify(historyArray));
-     }else{
-         historyFromLocalStorage.push(searchText);
-         localStorage.setItem("searchHistoryFromLocalStorage", JSON.stringify(historyFromLocalStorage))
-     }
+    //   localStorage.setItem()
+    //   var whatever = localStorage.getItem()
+      
+    //  var historyFromLocalStorage = JSON.parse(localStorage.getItem("searchHistoryFromLocalStorage"));
+    //  //is it not null
+
+    //  if(historyFromLocalStorage == null){
+    //     var historyArray = [];
+    //     historyArray.push(searchText);  //["test"]
+    //     //add that text to localstorage array
+    //     localStorage.setItem("searchHistoryFromLocalStorage", JSON.stringify(historyArray));
+    //  }else{
+    //      historyFromLocalStorage.push(searchText);
+    //      localStorage.setItem("searchHistoryFromLocalStorage", JSON.stringify(historyFromLocalStorage))
+    //  }
     });
 
 // .val()
